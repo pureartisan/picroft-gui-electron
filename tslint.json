@@ -31,6 +31,7 @@
         },
         "cyclomatic-complexity": false,
         "forin": true,
+        "indent": [true, "spaces", 2],
         "jsdoc-format": true,
         "label-position": true,
         "max-classes-per-file": { "options": 1 },

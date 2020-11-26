@@ -9,7 +9,7 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"],
         mainFields: ["main", "module", "browser"],
     },
-    entry: "./src/index.tsx",
+    entry: "./src/app/index.tsx",
     target: "electron-renderer",
     devtool: "source-map",
     module: {
