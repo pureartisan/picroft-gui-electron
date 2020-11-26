@@ -5,6 +5,9 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const SCREEN_WIDTH = 1024;
+const SCREEN_HEIGHT = 600;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -31,8 +34,8 @@ if (process.platform === 'win32') {
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
     show: false,
     webPreferences: {
       nodeIntegration: true
@@ -65,6 +68,8 @@ function createWindow () {
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
+    mainWindow.setFullScreen(true);
+    mainWindow.setMenuBarVisibility(false);
 
     // Open the DevTools automatically if developing
     if (dev) {
