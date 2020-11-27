@@ -2,6 +2,9 @@ const path = require("path");
 
 module.exports = {
   resolve: {
+    alias: {
+      '@electron': path.resolve(__dirname, './src/electron/app/')
+    },
     extensions: [".tsx", ".ts", ".js"],
   },
   devtool: "source-map",
@@ -11,7 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         },
