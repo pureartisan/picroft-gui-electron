@@ -14,5 +14,14 @@
     "outDir": "./dist",
     "strict": true ,
     "esModuleInterop": true,
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@electron/*": ["electron/app/*"]
+    }
   }
 }

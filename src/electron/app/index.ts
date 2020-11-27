@@ -1,6 +1,12 @@
 import { ipcMain } from 'electron';
 
+import { LightManager } from '@electron/light-manager';
+
+LightManager.init();
+
+
 // TESTING
+// =================================
 ipcMain.on('asynchronous-message', (event, arg) => {
   // prints "ping"
   console.log(arg); // tslint:disable-line no-console
