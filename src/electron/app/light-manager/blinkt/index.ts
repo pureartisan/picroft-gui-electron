@@ -1,7 +1,12 @@
 import blinkt from '@patched/blinkt';
 
 import { hsv2rgb } from '@electron/utils/colors';
+import { onlyRpiSync } from '@electron/utils/device';
 
+/**
+ * This class talks directly to Rpi native functions,
+ * so we have to check if we are running on RPI
+ */
 class Blinkt {
 
   private static readonly RAINBOW_SPACING = 360.0 / 16.0;
@@ -10,12 +15,16 @@ class Blinkt {
   private currentInterval: NodeJS.Timeout | null = null;
 
   init(): void {
-    blinkt.setClearOnExit();
+    onlyRpiSync(() => {
+      blinkt.setClearOnExit()
+    }, 'Blinkt.init => blinkt.setClearOnExit()');
   }
 
   clear(): Promise<void> {
     return new Promise(resolve => {
-      blinkt.clear();
+      onlyRpiSync(() => {
+        blinkt.clear()
+      }, 'Blinkt.clear => blinkt.clear()');
       resolve();
     });
   }
@@ -23,25 +32,29 @@ class Blinkt {
   showRainbow(): Promise<void> {
     return new Promise(resolve => {
 
-      const DELAY = 1; // 1 milisecond
+      onlyRpiSync(() => {
 
-      const interval = setInterval(() => {
-        const hue = Number(this.getNowTimestamp() * 100) % 360;
+        const DELAY = 1; // 1 milisecond
 
-        // set color for each LED
-        for (let x=0; x < blinkt.NUM_PIXELS; x++) {
-          const offset = x * Blinkt.RAINBOW_SPACING;
-          const h = Number((hue + offset) % 360) / 360.0;
-          const { r, g, b } = hsv2rgb(h, 1.0, 1.0);
-          blinkt.setPixels(x, r, g, b, Blinkt.DEFAULT_BRIGHTNESS);
-        }
+        const interval = setInterval(() => {
+          const hue = Number(this.getNowTimestamp() * 100) % 360;
 
-        // push the change
-        blinkt.show();
+          // set color for each LED
+          for (let x=0; x < blinkt.NUM_PIXELS; x++) {
+            const offset = x * Blinkt.RAINBOW_SPACING;
+            const h = Number((hue + offset) % 360) / 360.0;
+            const { r, g, b } = hsv2rgb(h, 1.0, 1.0);
+            blinkt.setPixels(x, r, g, b, Blinkt.DEFAULT_BRIGHTNESS);
+          }
 
-      }, DELAY);
+          // push the change
+          blinkt.show();
 
-      this.setCurrentInterval(interval);
+        }, DELAY);
+
+        this.setCurrentInterval(interval);
+
+      }, 'Blinkt.showRainbow => blinkt.setPixels() / blinkt.show()');
 
       resolve();
 

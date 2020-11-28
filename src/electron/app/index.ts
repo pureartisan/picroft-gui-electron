@@ -3,6 +3,7 @@ import { ipcMain } from 'electron';
 import { LightManager } from '@electron/light-manager';
 
 LightManager.init();
+LightManager.showLoading();
 
 
 // TESTING

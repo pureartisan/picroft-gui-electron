@@ -1,0 +1,35 @@
+.MainClock {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13em;
+  letter-spacing: 0.05em;
+  // font-size: 80px;
+  // padding: 5px 0;
+  color: #daf6ff;
+  text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+
+  .hours {
+    &::after {
+
+      content: ':'
+      // content: '\00a0:\00a0'
+    }
+  }
+
+  // .mins {
+  //   &::after {
+  //     content: ':'
+  //     // content: '\00a0:\00a0'
+  //   }
+  // }
+
+  .seconds {
+    font-size: 5rem;
+    margin-top: -1em;
+  }
+
+}

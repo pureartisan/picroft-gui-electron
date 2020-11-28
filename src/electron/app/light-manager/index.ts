@@ -16,6 +16,10 @@ class LightManager {
     await this.blinkt.showRainbow();
   }
 
+  async showLoading(): Promise<void> {
+    await this.blinkt.showRainbow();
+  }
+
 }
 
 const singleton = new LightManager();

@@ -1,0 +1,17 @@
+.StandByScreen {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: #0f3854;
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+  background-size: 100%;
+
+  &.listening {
+    background: radial-gradient(ellipse at center,  #0a3836  0%, #0ec4f1 70%);
+  }
+}
