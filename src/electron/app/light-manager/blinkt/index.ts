@@ -1,4 +1,4 @@
-import blinkt from 'blinkt';
+import blinkt from '@patched/blinkt';
 
 import { hsv2rgb } from '@electron/utils/colors';
 
@@ -33,7 +33,7 @@ class Blinkt {
           const offset = x * Blinkt.RAINBOW_SPACING;
           const h = Number((hue + offset) % 360) / 360.0;
           const { r, g, b } = hsv2rgb(h, 1.0, 1.0);
-          blinkt.setPixels(x, r, g, b, Blinkt.DEFAULT_BRIGHTNESS)
+          blinkt.setPixels(x, r, g, b, Blinkt.DEFAULT_BRIGHTNESS);
         }
 
         // push the change

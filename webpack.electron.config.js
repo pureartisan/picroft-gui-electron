@@ -1,4 +1,5 @@
 const path = require("path");
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   resolve: {
@@ -17,6 +18,18 @@ module.exports = {
         // exclude: /node_modules/,
         use: {
           loader: "babel-loader",
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                useBuiltIns: 'usage',
+                corejs: "2",
+                targets: {
+                  'node': true
+                }
+              }],
+              "@babel/preset-typescript"
+            ]
+          }
         },
       },
     ],
@@ -28,4 +41,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
   },
+  plugins: [],
+  externals: [nodeExternals()]
 };
