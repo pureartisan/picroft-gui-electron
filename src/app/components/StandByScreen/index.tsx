@@ -22,7 +22,9 @@ class StandByScreen extends React.Component<StandByScreenProps> {
         })}
         onClick={this.props.onClick}
       >
-        <MainClock />
+        <MainClock
+          mode={this.props.listening ? 'dark' : 'light'}
+        />
       </div>
     );
   }

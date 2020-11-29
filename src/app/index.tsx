@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Provider } from "react-redux";
+
+import { store } from "./redux/store";
 
 import { App } from './components/App';
 import { AppInitialiser } from './services/app-initialiser';
@@ -11,4 +14,9 @@ document.body.appendChild(mainElement);
 
 AppInitialiser.init();
 
-ReactDom.render(<App />, mainElement);
+ReactDom.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  mainElement
+);

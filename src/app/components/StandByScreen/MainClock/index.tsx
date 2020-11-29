@@ -7,6 +7,12 @@ const padZero = (num: number): string => {
   return num <= 9 ? `0${num}` : `${num}`;
 };
 
+type ClockColorMode = 'dark' | 'light';
+
+interface MainClockProps {
+  mode?: ClockColorMode
+}
+
 interface MainClockState {
   interval?: number
   hours?: string
@@ -14,7 +20,11 @@ interface MainClockState {
   seconds?: string
 }
 
-class MainClock extends React.Component<{}, MainClockState> {
+class MainClock extends React.Component<MainClockProps, MainClockState> {
+
+  static defaultProps: MainClockProps = {
+    mode: 'light'
+  };
 
   state: MainClockState = {};
 
@@ -28,7 +38,7 @@ class MainClock extends React.Component<{}, MainClockState> {
 
   render() {
     return (
-      <div className="MainClock">
+      <div className={`MainClock mode-${this.props.mode}`}>
         <span className="hours">{this.state.hours}</span>
         <span className="mins">{this.state.mins}</span>
         <span className="seconds">{this.state.seconds}</span>
