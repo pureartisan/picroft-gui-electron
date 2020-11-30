@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ActiveSkill } from '@app/components/ActiveSkill';
 import { StandByScreen } from '@app/components/StandByScreen';
 
 interface AppState {
@@ -11,12 +12,13 @@ interface AppState {
 class App extends React.Component<{}, AppState> {
 
   state: AppState = {
-    standBy: true
+    standBy: false
   };
 
   render() {
     return (
       <div className="App">
+        <ActiveSkill />
         {this.state.standBy && (
           <StandByScreen
             onClick={this.handleStandByScreenClick}

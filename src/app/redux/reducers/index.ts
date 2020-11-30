@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
-import { skill } from './skill';
+import { skills } from './skills';
 
-const rootReducer = combineReducers({
-  skill
+export const rootReducer = combineReducers({
+  skills
 });
 
-export {
-  rootReducer
-};
+export type ReduxState = ReturnType<typeof rootReducer>;
