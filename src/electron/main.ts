@@ -2,6 +2,8 @@ import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+import { IS_PI } from '@electron/utils/device';
+
 let mainWindow: Electron.BrowserWindow | null;
 
 const WINDOW_WIDTH = 1024;
@@ -45,7 +47,10 @@ function createWindow() {
       return;
     }
 
-    mainWindow.setFullScreen(true);
+    // only make the app go full screen on the Rpi
+    if (IS_PI) {
+      mainWindow.setFullScreen(true);
+    }
     mainWindow.setMenuBarVisibility(false);
     mainWindow.show();
 
