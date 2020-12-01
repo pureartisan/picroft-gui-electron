@@ -1,0 +1,34 @@
+@import "@app/styles/helpers/mixins";
+
+.DateTimeSkill {
+  @include fullScreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #0f3854;
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+  background-size: 100%;
+
+  .Date {
+    position: absolute;
+    top: 2em;
+    opacity: 1;
+    transition: opacity 1s ease, top 1s ease;
+
+    &.not-ready {
+      top: -1em;
+      opacity: 0;
+    }
+  }
+
+  .Clock {
+    margin-top: 0.5em;
+    opacity: 1;
+    transition: opacity 1s ease;
+
+    &.not-ready {
+      opacity: 0;
+    }
+  }
+}

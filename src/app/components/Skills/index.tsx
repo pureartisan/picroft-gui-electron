@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Transition } from 'react-spring/renderprops';
 
 import { ReduxState } from '@app/redux/reducers';
 
@@ -18,13 +19,24 @@ const skillMapper = (skillId?: string) => {
 };
 
 interface SkillProps {
-  skillId?: string,
+  skillId?: string
+  styles?: any
   meta?: any
 }
 
 const SkillComponent = (props: SkillProps) => {
   const Component = skillMapper(props.skillId);
-  return Component ? <Component {...(props as any)} /> : null;
+  return (
+    <Transition
+      items={Component}
+      from={{ opacity: 0 }}
+      enter={{ opacity: 1 }}
+      leave={{ opacity: 0 }}
+    >
+      {Comp => Comp && (style => <Comp {...(props as any)} style={style}/>)}
+    </Transition>
+  )
+  // return Component ? <Component {...(props as any)} /> : null;
 };
 
 const mapStateToProps = (state: ReduxState, ownProps: SkillProps): Partial<SkillProps> => ({

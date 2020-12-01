@@ -3,17 +3,28 @@ import { connect } from 'react-redux';
 
 import { ReduxState } from '@app/redux/reducers';
 
+import { Date } from './Date';
+import { Clock } from './Clock';
+
+import './style.scss';
+
+interface DateTimeSkillMeta {
+  date_string?: string
+}
+
 interface DateTimeSkillProps {
-  meta?: any // TODO
+  style?: any
+  meta?: DateTimeSkillMeta
 }
 
 class DateTimeSkillComponent extends React.Component<DateTimeSkillProps> {
   render() {
     return (
-      <React.Fragment>
-        <h1>DateTimeSkill</h1>
+      <div className="DateTimeSkill" style={this.props.style}>
+        <Date />
+        <Clock />
         <div>{JSON.stringify(this.props.meta)}</div>
-      </React.Fragment>
+      </div>
     );
   }
 }

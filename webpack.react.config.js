@@ -18,38 +18,50 @@ module.exports = {
   module: {
     rules: [
       {
-          test: /\.(js|ts|tsx)$/,
-          exclude: /node_modules/,
-          use: {
+        test: /\.(js|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
           loader: "babel-loader",
-          },
+        },
       },
       {
-          test: /\.css$/,
-          exclude: /node_modules/,
-          use: [
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader'
-          ],
+        ],
       },
       {
-          test: /\.scss$/,
-          use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }],
-          exclude: /node_modules/,
+        test: /\.scss$/,
+        use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            // {
+            //   loader: 'postcss-loader',
+            //   options: {
+            //     sourceMap: true,
+            //     postcssOptions: {
+            //       config: path.resolve(__dirname, "postcss.config.js")
+            //     }
+            //   }
+            // },
+            {
+              loader: 'sass-loader', options: { sourceMap: true }
+            }
+        ],
+        exclude: /node_modules/,
       },
       {
-          test: /\.(jpe?g|png|gif)$/,
-          use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
-          exclude: /node_modules/,
+        test: /\.(jpe?g|png|gif)$/,
+        use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
+        exclude: /node_modules/,
       },
       {
-          test: /\.(eot|svg|ttf|woff|woff2)$/,
-          use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
-          exclude: /node_modules/,
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
+        exclude: /node_modules/,
       }
     ],
   },

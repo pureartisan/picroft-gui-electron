@@ -1,0 +1,30 @@
+.DateTimeSkill {
+  .Date {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 4em;
+    letter-spacing: 0.05em;
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+
+    &.mode-dark {
+      color: #000000;
+    }
+
+    .day {
+      &::after {
+        content: ',\00a0'
+      }
+    }
+
+    .month {
+      &::before {
+        content: '\00a0'
+      }
+    }
+  }
+}
