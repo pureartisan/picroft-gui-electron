@@ -1,0 +1,26 @@
+@import "@app/styles/helpers/mixins";
+
+.IpSkill {
+  @include fullScreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #0f3854;
+  background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+  background-size: 100%;
+
+  .ip-address {
+
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 4em;
+    letter-spacing: 0.05em;
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+
+    &.not-ready {
+      top: -1em;
+      opacity: 0;
+    }
+  }
+}

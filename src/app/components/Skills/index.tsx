@@ -1,42 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Transition } from 'react-spring/renderprops';
 
 import { ReduxState } from '@app/redux/reducers';
 
 import { DateTimeSkill } from './DateTimeSkill';
 import { WeatherSkill } from './WeatherSkill';
+import { IpSkill } from './IpSkill';
 
-const skillMapper = (skillId?: string) => {
+const skillMapper = (skillId?: string | null) => {
   switch (skillId) {
     case 'mycroft-date-time.mycroftai':
       return DateTimeSkill;
     case 'mycroft-weather.mycroftai':
       return WeatherSkill;
+    case 'mycroft-ip.mycroftai':
+      return IpSkill;
     default:
       return null;
   }
 };
 
 interface SkillProps {
-  skillId?: string
-  styles?: any
+  skillId?: string | null
   meta?: any
+  style?: any
 }
 
 const SkillComponent = (props: SkillProps) => {
   const Component = skillMapper(props.skillId);
-  return (
-    <Transition
-      items={Component}
-      from={{ opacity: 0 }}
-      enter={{ opacity: 1 }}
-      leave={{ opacity: 0 }}
-    >
-      {Comp => Comp && (style => <Comp {...(props as any)} style={style}/>)}
-    </Transition>
-  )
-  // return Component ? <Component {...(props as any)} /> : null;
+  return Component ? <Component {...(props as any)} /> : null;
 };
 
 const mapStateToProps = (state: ReduxState, ownProps: SkillProps): Partial<SkillProps> => ({

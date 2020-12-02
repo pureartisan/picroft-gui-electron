@@ -9,7 +9,9 @@ import { Clock } from './Clock';
 import './style.scss';
 
 interface DateTimeSkillMeta {
-  date_string?: string
+  data?: {
+    date_string?: string
+  }
 }
 
 interface DateTimeSkillProps {
@@ -23,7 +25,6 @@ class DateTimeSkillComponent extends React.Component<DateTimeSkillProps> {
       <div className="DateTimeSkill" style={this.props.style}>
         <Date />
         <Clock />
-        <div>{JSON.stringify(this.props.meta)}</div>
       </div>
     );
   }

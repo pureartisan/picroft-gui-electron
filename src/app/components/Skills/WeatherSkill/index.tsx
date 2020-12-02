@@ -3,16 +3,20 @@ import { connect } from 'react-redux';
 
 import { ReduxState } from '@app/redux/reducers';
 
+import './style.scss';
+
 interface WeatherSkillMeta {
-  current?: string // number
-  min?: string // number
-  max?: string // number
-  location?: string // "Düsseldorf\nNorth Rhine-Westphalia\nGermany"
-  condition?: string // "few clouds"
-  icon?: string // "02d"
-  weathercode?: number
-  humidity?: string // "73 percent"
-  wind?: string // "3 " number with spaces
+  data?: {
+    current?: string // number
+    min?: string // number
+    max?: string // number
+    location?: string // "Düsseldorf\nNorth Rhine-Westphalia\nGermany"
+    condition?: string // "few clouds"
+    icon?: string // "02d"
+    weathercode?: number
+    humidity?: string // "73 percent"
+    wind?: string // "3 " number with spaces
+  }
 }
 
 interface WeatherSkillProps {
@@ -24,6 +28,7 @@ class WeatherSkillComponent extends React.Component<WeatherSkillProps> {
   render() {
     return (
       <div className="WeatherSkill" style={this.props.style}>
+        <div className="background" />
         <h1>WeatherSkill</h1>
         <div>{JSON.stringify(this.props.meta)}</div>
       </div>
